@@ -11,14 +11,21 @@ public class GravityGan : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            _GGunActive = true;
-        }
         if (Input.GetMouseButtonUp(1))
         {
-            _GGunActive = false;
+            _GGunActive = !_GGunActive;
         }
+        
+        if (_GGunActive)
+        {
+            _gravityZone.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            _gravityZone.localScale = new Vector3(0, 0, 0);
+        }
+
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -33,11 +40,11 @@ public class GravityGan : MonoBehaviour
                 rb.AddForce((vecGravity * _GForce * rb.mass) / 4);
             }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if (_GGunActive)
         {
@@ -46,7 +53,6 @@ public class GravityGan : MonoBehaviour
             {
                 rb.useGravity = false;
                 rb.AddForce(vecGravity * _GForce * rb.mass * -1);
-                rb.transform.rotation = Quaternion.identity;
             }
         }
     }
