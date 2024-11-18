@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private AttractionGGun _AGG;
     [SerializeField] private GameObject[] _Weapon;
-    [SerializeField] private int changeSlot = 2;
+    [SerializeField] private int changeSlot = 1;
 
     private void Update()
     {
@@ -24,9 +24,6 @@ public class Inventory : MonoBehaviour
                     changeSlot = 2;
                     break;
                 case 2:
-                    changeSlot = 3;
-                    break;
-                case 3:
                     changeSlot = 1;
                     break;
             }
@@ -43,13 +40,10 @@ public class Inventory : MonoBehaviour
                         _AGG._rbInZone.RemoveAt(i);
                     }
                     _AGG._GGunActive = false;
-                    changeSlot = 3;
+                    changeSlot = 2;
                     break;
                 case 2:
                     changeSlot = 1;
-                    break;
-                case 3:
-                    changeSlot = 2;
                     break;
             }
             RenderChangeSlots();
