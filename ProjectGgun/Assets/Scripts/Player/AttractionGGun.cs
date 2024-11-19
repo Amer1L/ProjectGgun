@@ -88,10 +88,11 @@ public class AttractionGGun : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        Rigidbody rb = other.GetComponent<Rigidbody>();
-        Vector3 vecGravity = (_gravityZone.position - rb.position).normalized;
-        if (rb != null)
+        if (other.GetComponent<Rigidbody>())
         {
+
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            Vector3 vecGravity = (_gravityZone.position - rb.position).normalized;
             for (int i = 0; i < _rbInZone.Count; i++)
             {
                 if (_rbInZone[i].gameObject == rb.gameObject)
